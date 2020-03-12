@@ -1,0 +1,26 @@
+package br.com.alura.forum.controllers;
+
+import br.com.alura.forum.model.Curso;
+import br.com.alura.forum.model.Topico;
+
+public class TopicoForm {
+
+	private String titulo;
+	public TopicoForm(String titulo, String mensagem, Curso curso) {
+		super();
+		this.titulo = titulo;
+		this.mensagem = mensagem;
+		this.curso = curso;
+	}
+
+
+	private String mensagem;
+	private Curso curso;
+
+	
+	public static Topico convert(TopicoForm form) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

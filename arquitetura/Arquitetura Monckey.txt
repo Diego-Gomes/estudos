@@ -1,0 +1,49 @@
+Spring Cloud
+	Stream - Para consumir as mensagens da fila.
+	Oauth2 - Utilizado para autenticar os usuários, sem JWT, utilizando apenas token binario.
+	Sleuth - Utilizado para traquear as mensagens trocadas pelo microserviços, adicionando um tracer id, para ser filtrado no Kibana (Geranciador de log).
+	Hateoas - Utilizado na api pública, devolvendo todos os links necessários.
+	Contract - Para uso de muita fila, garante que quando manda a mensagem para o exchange o microserviço vai conseguir parsear a mensagem. 
+			Valida os contratos, a ponta que envia e a ponta que consome, ele garante o esperado pelo o destino.
+	JavaFormat - Valida se os códigos estão de acordo com o padrão do Spring.
+	Config Server - Um microserviço na infra, e as configurações fica em um branch para cada ambiente (dev,homolog e produção), 
+			você comita as alterações nos três ambientes, e quando a aplicação subir, pega a alteração de cada ambiente.
+
+	Cache - Basta realizar uma anotação no metodo que o mesmo fica em cache.
+
+RabitMQ - Broker de mensageria
+
+Kubernetes - Gerenciador de containers docks para realizar a escabilidade, na forma horizontal.
+
+
+DDD - Bounded Context - Dividir os microserviços no contexto de negócio.
+	Os pacotes são dividos em contexto de negócio dentro dos microserviços. Todas as classes são package scope.
+	
+	Bounded Context 
+		Web
+		Integration
+
+	Pacote Core - Replica para todos os microserviços.
+
+UFFFORJ
+
+
+
+
+USABILA
+	KFCA - Sistema de fila e também é consistente, guarda as mensagens de um determinado intervalo de tempo.
+	Postgress - Projeções
+	ElasticSearch - Pesquisa e Agregação
+	DBision - Changed data caption - with com kafka
+
+
+
+IFOOD
+	TERRAFORM
+	CHEF
+
+
+Comunidade tem esquadros dentro emprestimos.
+
+
+

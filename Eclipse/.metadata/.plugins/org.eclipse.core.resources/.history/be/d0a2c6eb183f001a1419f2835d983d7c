@@ -1,0 +1,7 @@
+package br.com.alura.blog.forum.controllers;
+
+@org.springframework.stereotype.Controller
+public class Controller {
+
+	
+}

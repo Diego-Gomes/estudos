@@ -1,0 +1,24 @@
+package br.com.alura.forum.controllers;
+
+public class JWDTDto {
+
+	private String token;
+	
+	public JWDTDto(String token, String tipoAutenticacao) {
+		this.token = token;
+		this.tipoAutenticacao = tipoAutenticacao;
+	}
+
+	private String tipoAutenticacao;
+
+	public String getToken() {
+		return token;
+	}
+
+	public String getTipoAutenticacao() {
+		return tipoAutenticacao;
+	}
+	
+	
+	
+}

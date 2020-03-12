@@ -1,0 +1,35 @@
+<Project DefaultTargets="build">
+    <PropertyGroup>
+        <OutputDirectory>bin</OutputDirectory>
+    </PropertyGroup>
+    <ItemGroup>
+        <Arquivos Include="ListaTarefas.cs" />
+        <Arquivos Include="Tarefa.cs" />
+        <Arquivos Include="Categoria.cs" />
+    </ItemGroup>
+    
+    <Target Name="Before" BeforeTargets="Build">
+        <Message Text="Before Build" />
+    </Target>
+    <Target Name="Clean">
+        <Delete Files="$(OutputDirectory)" />
+        <RemoveDir Directories="bin" />
+    </Target>
+    
+    <Target Name="Build">
+        <Message Text="Compilando pelo MSbuild...." />
+        <MakeDir Directories="$(OutputDirectory)"/>
+        <Csc Sources="@(Arquivos)" OutputAssembly="$(OutputDirectory)\tarefa.exe" />
+    </Target>
+    
+    <Target Name="Recompile" DependsOnTargets="Clean;Build">
+        <Message Text="Recompile" />
+    </Target>
+    
+    <Target Name="ZipOutputPath" AfterTargets="Build">
+        <ZipDirectory
+            SourceDirectory="$(MSBuildProjectDirectory)\bin"
+            DestinationFile="$(MSBuildProjectDirectory)\output.zip" />
+    </Target>
+    
+</Project>

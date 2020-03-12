@@ -1,0 +1,81 @@
+package br.com.caelum.leilao.dominio;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class TestAvaliador {
+
+	private static Avaliador avaliador;
+
+	@BeforeAll
+	static void initAll() {
+
+		avaliador = new Avaliador();
+
+	}
+	
+	@Test
+	void Avaliar_Leiloes_Sem_Nenhum_Lance_Dado() {
+	    Leilao leilao = new BuilderLeilao()
+	        .Para("Playstation 3 Novo")
+	        .Build();
+
+	    Assertions.assertThrows(RuntimeException.class, () -> {
+	    		avaliador.avalia(leilao);
+	      });
+	}
+
+	@Test
+	void Avaliar_Menor_E_Maior_Lance_Para_N_Usuarios() {
+
+		Leilao leilao = new Leilao("Carro");
+		leilao.propoe(new Lance(new Usuario("Diego"), 20000.00));
+		leilao.propoe(new Lance(new Usuario("Rafael"), 60000.00));
+		leilao.propoe(new Lance(new Usuario("Tiago"), 40000.00));
+
+		avaliador.avalia(leilao);
+
+		assertEquals(20000.00, avaliador.getMenorLance().getValor(), 0.00001);
+		assertEquals(60000.00, avaliador.getMaiorLance().getValor(), 0.00001);
+	}
+
+	@Test
+	void Avaliar_Menor_E_Maior_Lance_Para_Um_Usuario() {
+		
+		Leilao leilao = new Leilao("Carro");
+		leilao.propoe(new Lance(new Usuario("Diego"), 20000.00));
+		avaliador.avalia(leilao);
+
+		assertEquals(20000.00, avaliador.getMenorLance().getValor(), 0.00001);
+		assertEquals(20000.00, avaliador.getMaiorLance().getValor(), 0.00001);
+	}
+	
+	@Test
+	void Avaliar_Maiores_Tres_Ultimos_Lances_Para_N_Usuarios() {
+		
+		Leilao leilao = new Leilao("Carro");
+	
+		Usuario diego = new Usuario("Diego");
+		Usuario roberta = new Usuario("Roberta");
+		
+		leilao.propoe(new Lance(diego, 20000.00));
+		leilao.propoe(new Lance(roberta, 30000.00));
+		leilao.propoe(new Lance(diego, 40000.00));
+		leilao.propoe(new Lance(roberta, 50000.00));
+		
+		avaliador.avalia(leilao);
+		
+		List<Lance> tresMaioresLances = avaliador.getTresMaioresLances();
+		
+		assertEquals(3, tresMaioresLances.size());
+		assertEquals(50000.00, tresMaioresLances.get(0).getValor());
+		assertEquals(40000.00, tresMaioresLances.get(1).getValor());
+		assertEquals(30000.00, tresMaioresLances.get(2).getValor());
+		
+	}
+}

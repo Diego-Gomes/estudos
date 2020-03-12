@@ -1,0 +1,29 @@
+package br.com.alura.forum.dto;
+
+public class LoginForm {
+
+	private String usuario;
+	private String senha;
+	
+	
+	public String getUsuario() {
+		return usuario;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	public LoginForm(String usuario, String senha) {
+		super();
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+}

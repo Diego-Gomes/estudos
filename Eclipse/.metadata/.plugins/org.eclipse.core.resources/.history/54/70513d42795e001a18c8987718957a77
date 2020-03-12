@@ -1,0 +1,15 @@
+package domain.interfaces;
+
+import java.util.List;
+
+import domain.Product;
+
+public interface IDAO<?> {
+	
+	public Product insert(String name, String description);
+	
+	public List<Product> list() ;
+	
+	public void delete(int id);
+
+}

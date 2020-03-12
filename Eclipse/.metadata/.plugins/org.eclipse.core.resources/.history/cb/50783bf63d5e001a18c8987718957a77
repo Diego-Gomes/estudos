@@ -1,0 +1,82 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductDAO {
+
+	private Connection connection;
+
+	public ProductDAO(Connection connection) {
+		
+		this.connection = connection;
+	}
+	
+	public Product insert(String name, String description) throws SQLException {
+
+		Product product = null;
+		
+		String sql = "INSERT INTO produto (nome, descricao) VALUES(?, ?)";
+		
+		PreparedStatement prepareStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		
+		prepareStatement.setString(1, name);
+		prepareStatement.setString(2, description);
+		
+		prepareStatement.execute();
+		
+		ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
+		
+		if(generatedKeys.next())
+			product = new Product(generatedKeys.getInt(1), name, description);
+			
+		return product;
+	}
+	
+	public List<Product> list() {
+		List<Product> products = new  ArrayList<Product>();
+
+		try {
+			Statement createStatement = connection.createStatement();
+			
+			String sql = "SELECT * FROM produto";
+			createStatement.execute(sql );
+			
+			ResultSet resultSet = createStatement.getResultSet();
+			
+			while(resultSet.next()) {
+				
+				int id 				= resultSet.getInt("id");
+				String name	 		= resultSet.getString("nome");
+				String description 	= resultSet.getString("descricao");
+			
+				products.add(new Product(id, name, description));
+				
+			}
+			
+		}catch (SQLException ex) {
+			
+			System.err.println(ex.getMessage());
+			
+		}
+		
+		return products;
+	}
+	
+	
+	public void delete(int id) throws SQLException {
+		String sql = "DELETE FROM produto WHERE id > ?";
+		
+		PreparedStatement prepareStatement = connection.prepareStatement(sql);
+		
+		prepareStatement.setInt(1, id);
+		prepareStatement.execute();
+		
+		System.out.println(String.format("Amount deleted records: %s", prepareStatement.getUpdateCount()));
+
+	}
+	
+}

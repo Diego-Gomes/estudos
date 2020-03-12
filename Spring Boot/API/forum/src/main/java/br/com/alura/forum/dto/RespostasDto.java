@@ -1,0 +1,23 @@
+package br.com.alura.forum.dto;
+
+import br.com.alura.forum.model.Resposta;
+
+public class RespostasDto {
+
+	private String mensagem;
+	private String autor;
+	
+	public RespostasDto(Resposta resposta) {
+		this.mensagem = resposta.getMensagem();
+		this.autor = resposta.getAutor().getNome();
+	}
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+	public String getAutor() {
+		return autor;
+	}
+	
+	
+}

@@ -1,0 +1,26 @@
+package br.com.alura.forum.controllers;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.alura.forum.dto.JWDTDto;
+import br.com.alura.forum.dto.LoginForm;
+
+@RestController
+@RequestMapping("/auth")
+public class AuthController {
+
+	private AuthenticationManager authenticationManager ;
+	
+	@PostMapping
+	public ResponseEntity<JWDTDto> autenticar(@RequestBody LoginForm  form){
+		
+		return ResponseEntity.ok(new JWDTDto(form.getUsuario(), form.getSenha()));
+		
+	}
+	
+}

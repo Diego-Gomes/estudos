@@ -1,0 +1,25 @@
+1580392951558	Rename local variable 'funcionario'
+1580392964345	Rename type 'Principal'
+1580404371572	Rename package 'br.com.atalhos'
+1580413881299	Move compilation units
+1580413887375	Rename type 'CandleStick'
+1580426249823	Move compilation unit
+1580427907688	Rename compilation unit 'ReaderXML.java'
+1580438959892	Rename resource 'resource'
+1580439705176	Delete element
+1580444497417	Rename compilation unit 'Test.java'
+1580444589759	Delete element
+1580444606815	Rename type 'BasicView'
+1580446406909	Rename compilation unit 'ArgentumBean.java'
+1580446936941	Rename resource 'olaMundo.xhtml'
+1580447192630	Delete element
+1580447214194	Rename compilation unit 'BasicView.java'
+1580447256423	Delete element
+1580447260814	Delete element
+1580475775163	Delete element
+1580477246617	Rename compilation unit 'Candlestick.java'
+1580477261716	Rename type 'CandlestickFactory'
+1580477264561	Rename type 'CandlestickFactoryTest'
+1580477327278	Rename type 'CandlestickTest'
+1580478141910	Copy compilation unit
+1580481183323	Rename compilation unit 'GerarModeloGrafico.java'

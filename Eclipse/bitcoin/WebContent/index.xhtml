@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Bitcoin</title>
+</h:head>
+<h:body>
+	<p:chart type="ohlc" model="#{bitcoinBean.ohlcModel}"
+		style="width:400px;height:300px" />
+
+	<h:form>
+		<p:dataTable var="trade" value="#{bitcoinBean.trades}"
+			paginator="true" rows="15">
+			<p:column headerText="Tipo da ordem ativa" sortBy="#{trade.type}">
+				<h:outputText value="#{trade.type}" />
+			</p:column>
+
+			<p:column headerText="Valor da ordem" sortBy="#{trade.amount}">
+				<h:outputText value="#{trade.amount}" />
+			</p:column>
+
+			<p:column headerText="Preço da unidade da moeda" sortBy="#{trade.date}">
+				<h:outputText value="#{trade.unit_price}" />
+			</p:column>
+			
+			<p:column headerText="Volume">
+				<h:outputText value="#{trade.unit_price * trade.amount}" />
+			</p:column>
+
+			<p:column headerText="Código da ordem ativa">
+				<h:outputText value="#{trade.active_order_code}" />
+			</p:column>
+
+			<p:column headerText="Código da ordem passiva" >
+				<h:outputText value="#{trade.passive_order_code}" />
+			</p:column>
+
+			<p:column headerText=" Data da ordem" sortBy="#{trade.date}">
+				<h:outputText value="#{trade.date}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

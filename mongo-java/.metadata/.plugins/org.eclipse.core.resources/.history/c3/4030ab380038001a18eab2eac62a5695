@@ -1,0 +1,9 @@
+package br.com.alura.funcionarios.api.swagger;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnabbleSwagger
+public class SwaggerConfiguration {
+
+}

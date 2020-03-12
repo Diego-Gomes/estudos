@@ -1,0 +1,5 @@
+package br.com.alura.forum.configuracao.security;
+
+public class SwaggerConfiguration {
+
+}

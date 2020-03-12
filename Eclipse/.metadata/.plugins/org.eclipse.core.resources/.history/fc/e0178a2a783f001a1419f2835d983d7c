@@ -1,0 +1,13 @@
+package br.com.alura.forum.dto;
+
+import br.com.alura.forum.model.Topico;
+
+public class DetalhesTopicoDto {
+
+	public DetalhesTopicoDto(Topico topico) {
+			
+		String titulo = topico.getTitulo();
+	
+	}
+	
+}

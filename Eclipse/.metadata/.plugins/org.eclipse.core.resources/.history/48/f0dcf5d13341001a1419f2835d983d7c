@@ -1,0 +1,25 @@
+package br.com.alura.forum.configuracao.security;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
+import br.com.alura.forum.model.Usuario;
+
+@Service
+public class TokenService {
+
+	public String gerarToken(Authentication authenticate) {
+		Usuario logado = (Usuario) authenticate.getPrincipal();
+		LocalDate hoje = LocalDate.now();
+		
+		return Jwts.builder()
+				.setIssuer("API FÓRUM ALURA")
+				.setSubject(logado.getId().toString())
+				.setIssuedAt(hoje.getTime())
+				.compact();
+	}
+
+}

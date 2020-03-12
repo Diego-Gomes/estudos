@@ -1,0 +1,12 @@
+package br.com.alura.forum.configuracao.erro;
+
+public class ErroDeFormularioDto {
+
+	public ErroDeFormularioDto(String nomeCampo, String mensagem) {
+		super();
+		this.nomeCampo = nomeCampo;
+		this.mensagem = mensagem;
+	}
+	private String nomeCampo;
+	private String mensagem;
+}

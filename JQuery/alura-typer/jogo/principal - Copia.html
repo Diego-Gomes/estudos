@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UFT-8">
+    <title>Alura Typer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/libs/google-fonts.css">
+    <link rel="stylesheet" href="css/libs/selectize.default.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="row parallax-container fundoTitulo">
+        <div class="col s1">
+            <!-- Element Showed -->
+            <a id="menu" class="waves-effect waves-light btn btn-floating pink lighten-1"
+                onclick="$('.tap-target').tapTarget('open');"><i class="material-icons">menu
+                </i></a>
+        </div>
+        <div class="container">
+            <div class="col s10 white-text">
+                <h1 class="ml2">Fast Typer</h1>
+            </div>
+            <div class="col s1 pulse">
+                <img src="img/sonic.png" class="pulse" width="140px" height="140px">
+            </div>
+        </div>
+    </div>
+  
+   
+    <div class="row container z-depth-5 white" style="border-radius: 20px;">
+        <div class="col s8">
+            <blockquote>
+                <p class="frase">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt
+                    ut
+                    labore et dolore magna aliqua.</p>
+            </blockquote>
+        </div>
+        <div class="col s3" style="padding-top: 25px;">
+            <i class="small material-icons icones deep-purple-text">description</i>
+            <span id="tamanho-frase">5</span> words
+        </div>
+        <div class="col s1">
+            <div class="countdown__clock ">
+                <div>
+                    <div class="countdown__count pink lighten-1">
+                        <span id="tempo-digitacao">10</span>
+                    </div>
+                    <div class="countdown__count-label">secs</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col s12">
+            <textarea class="campo-digitacao"></textarea>
+        </div>
+        <div class="col s12">
+            <ul>
+                <li><span id="contador-caracteres" class="flow-text">0</span> characters</li>
+                <li><span id="contador-palavras" class="flow-text">0</span> word</li>
+            </ul>
+        </div>
+        <div class="col s11" style="padding-bottom: 10px;">
+            <a id="botao-reiniciar"
+                class="btn-floating btn-large waves-effect waves-light deep-purple darken-1 tooltipped"
+                data-position="bottom" data-tooltip="New Game">
+                <i class="material-icons">restore</i>
+            </a>
+
+            <a id="botao-placar"
+                class="btn-floating btn-large waves-effect waves-light deep-purple darken-1 modal-trigger tooltipped"
+                data-position="bottom" data-tooltip="Score" href="#modalPlacar">
+                <i class="material-icons">assignment</i>
+            </a>
+
+            <a id="botao-frase" class="btn-floating btn-large waves-effect waves-light deep-purple darken-1 tooltipped"
+                data-position="bottom" data-tooltip="New Randon Phrase">
+                <i class="material-icons">shuffle</i>
+            </a>
+            <a id="botao-frase-id"
+                class="btn-floating btn-large waves-effect waves-light deep-purple darken-1 tooltipped"
+                data-position="bottom" data-tooltip="Phrase">
+                <i class="material-icons">repeat_one</i>
+            </a>
+            <input type="number" min="0" id="frase-id">
+            <div class="select-usuarios">
+                <select id="usuarios">
+                    <option value="Douglas">Douglas</option>
+                    <option value="Flavio">Flavio</option>
+                    <option value="Nico">Nico</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col s1">
+            <a id="botao-sync" class="btn-floating btn-large waves-effect waves-light deep-purple darken-1 tooltipped"
+                data-tooltip="Sync Score">
+                <i class="material-icons">swap_vert</i>
+            </a>
+        </div>
+        <div class="col s12">
+            <div class="progress  purple darken-2" id="spinner">
+                <div class="indeterminate pink"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row parallax-container pink">
+    </div>
+
+
+
+    <div id="modalPlacar" class="modal">
+        <div class="modal-content">
+            <section class="placar">
+                <h3 class="center">Score</h3>
+                <table class="centered bordered">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>No. words</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <!-- Tap Target Structure -->
+        <div class="tap-target pink lighten-1" data-target="menu">
+            <div class="tap-target-content">
+                <h5>About the game.</h5>
+                <p>
+                    This game is for you to train your typing speed.
+
+                    It will be a lot of fun, good luck Sonic.</p>
+            </div>
+        </div>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/placar.js"></script>
+        <script src="js/frase.js"></script>
+        <script src="js/selectize.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+</body>
+
+</html>

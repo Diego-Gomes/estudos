@@ -1,0 +1,20 @@
+{
+  "name": "casadocodigo",
+  "version": "1.0.0",
+  "description": "Aplicação baseada na casa do código",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js --ignore *.marko.js"
+  },
+  "author": "Diego Gomes",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.16.3",
+    "marko": "4.13.4-1",
+    "sqlite3": "4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.8"
+  }
+}

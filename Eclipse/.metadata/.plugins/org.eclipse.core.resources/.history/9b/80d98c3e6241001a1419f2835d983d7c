@@ -1,0 +1,156 @@
+package br.com.alura.forum.controllers;
+
+import java.net.URI;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import br.com.alura.forum.data.repository.ICursoRepository;
+import br.com.alura.forum.data.repository.ITopicoRepository;
+import br.com.alura.forum.dto.AtualizarTopicoForm;
+import br.com.alura.forum.dto.DetalhesTopicoDto;
+import br.com.alura.forum.dto.TopicoDto;
+import br.com.alura.forum.dto.TopicoForm;
+import br.com.alura.forum.model.Topico;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@RestController
+@RequestMapping("/topicos")
+@Api(tags = "Topicos")
+public class TopicoController {
+
+	@Autowired
+	private ITopicoRepository iTopicoRepository;
+
+	@Autowired
+	private ICursoRepository iCursoRepository;
+
+	@GetMapping(produces = "application/json")
+	@Cacheable(value = "listarTopicos")
+	public ResponseEntity<Page<TopicoDto>> listar(@RequestParam(required = false) String nomeCurso,
+			@PageableDefault(page = 0, size = 10) Pageable paginacao) {
+
+		try {
+			Page<Topico> topicos;
+			
+			if (nomeCurso != null)
+				topicos = iTopicoRepository.findByCursoNome(nomeCurso, paginacao);
+			else
+				topicos = iTopicoRepository.findAll(paginacao);
+			
+			return ResponseEntity.ok().body(TopicoDto.converter(topicos));
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
+	}
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Tópico consultado"),
+	@ApiResponse(code = 400, message = "Tópico não encontrado"),
+	@ApiResponse(code = 500, message = "Erro interno. Gerada uma exceção"), })
+	@PostMapping(produces = "application/json", consumes = "application/json")
+	@Transactional
+	@CacheEvict(value = "listarTopicos", allEntries = true)
+	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm topico, UriComponentsBuilder uriBuilder) {
+
+		Topico topicoModel = topico.converter(iCursoRepository);
+		iTopicoRepository.save(topicoModel);
+
+		URI uri = uriBuilder.path("topicos/{id}").buildAndExpand(topicoModel.getId()).toUri();
+
+		return ResponseEntity.created(uri).body(new TopicoDto(topicoModel));
+
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Tópico consultado"),
+	@ApiResponse(code = 404, message = "Tópico não encontrado"),
+	@ApiResponse(code = 500, message = "Foi gerada uma exceção"), })
+	@GetMapping(path = "/{id}", produces = "application/json")
+	public ResponseEntity<DetalhesTopicoDto> detalhar(@PathVariable Long id) {
+
+		try {
+			Optional<Topico> optional = iTopicoRepository.findById(id);
+
+			if (optional.isPresent()) {
+				DetalhesTopicoDto detalhesTopicoDto = new DetalhesTopicoDto(optional.get());
+				return ResponseEntity.ok().body(detalhesTopicoDto);
+			}
+			return ResponseEntity.notFound().build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna o tópico que foi atualziado"),
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+			@ApiResponse(code = 404, message = "Tópico não encontrado"),
+			@ApiResponse(code = 500, message = "Foi gerada uma exceção"), })
+	@PutMapping(path = "/{id}", produces = "applicaton/json", consumes = "application/json")
+	@Transactional
+	@CacheEvict(value = "listarTopicos", allEntries = true)
+	public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarTopicoForm topico) {
+
+		try {
+			Optional<Topico> optional = iTopicoRepository.findById(id);
+
+			if (optional.isPresent()) {
+				Topico topicoModel = topico.atualizar(optional.get());
+				TopicoDto topicoDto = new TopicoDto(topicoModel);
+				return ResponseEntity.ok().body(topicoDto);
+			}
+
+			return ResponseEntity.notFound().build();
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Tópico deletado"),
+	@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	@ApiResponse(code = 404, message = "Tópico não encontrado"),
+	@ApiResponse(code = 500, message = "Erro interno. Foi gerada uma exceção"), })
+	@DeleteMapping("/{id}")
+	@Transactional
+	@CacheEvict(value = "listarTopicos", allEntries = true)
+	public ResponseEntity<?> deletar(@PathVariable Long id) {
+
+		try {
+			Optional<Topico> optional = iTopicoRepository.findById(id);
+
+			if (optional.isPresent()) {
+				iTopicoRepository.deleteById(id);
+				return ResponseEntity.ok().build();
+			}
+
+			return ResponseEntity.notFound().build();
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+
+	}
+}

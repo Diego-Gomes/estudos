@@ -1,0 +1,5 @@
+package br.com.alura.blog.forum.controllers;
+
+public class Controller {
+
+}

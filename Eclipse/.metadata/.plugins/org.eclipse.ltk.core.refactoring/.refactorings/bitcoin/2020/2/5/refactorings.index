@@ -1,0 +1,21 @@
+1580583438832	Move 'beans.xml' to 'META-INF'
+1580583543810	Move 'beans.xml' to 'WEB-INF'
+1580583591866	Delete element
+1580588708311	Extract Class...
+1580588764364	Extract Class...
+1580589029962	Rename type 'Trader'
+1580589117158	Copy compilation units
+1580589121920	Delete elements
+1580589221247	Extract Class...
+1580593082001	Copy package
+1580593090625	Delete elements
+1580593098941	Delete element
+1580593122008	Copy package
+1580593129960	Delete element
+1580593191707	Rename package 'br.com.bitcoin.gson'
+1580593204020	Rename package 'br'
+1580593210316	Rename package 'br.com'
+1580593221980	Rename package 'br.combitcoin'
+1580593227384	Rename package 'br.com.bitcoin'
+1580593253594	Rename type 'LerJson'
+1580593270050	Delete element

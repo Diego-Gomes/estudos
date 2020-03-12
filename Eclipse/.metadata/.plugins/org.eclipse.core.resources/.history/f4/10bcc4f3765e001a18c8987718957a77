@@ -1,0 +1,39 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+public class ConnectionFactory {
+	
+	private DataSource dataSource;
+	
+	public ConnectionFactory(Properties config) {
+		this.dataSource = getDataSource(config);
+		
+	}
+
+	public Connection getConnection() throws SQLException {
+		return this.dataSource.getConnection();
+	}
+	
+private DataSource getDataSource(Properties config) {
+		
+		String url 			= config.getProperty("url"); 
+		String user 		= config.getProperty("user");
+		String password 	= config.getProperty("password"); 
+		String maxPoolSize 	= config.getProperty("maxPoolSize");
+
+		ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+
+		comboPooledDataSource.setJdbcUrl(url);
+		comboPooledDataSource.setUser(user);
+		comboPooledDataSource.setPassword(password);
+		comboPooledDataSource.setMaxPoolSize(Integer.parseInt((maxPoolSize)));
+	
+		return comboPooledDataSource;
+	}
+	
+}

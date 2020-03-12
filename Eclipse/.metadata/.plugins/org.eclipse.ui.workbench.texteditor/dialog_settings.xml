@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="tabelaAgrupada"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="tabelaAgrupada"/>
+			<item value="tabela"/>
+			<item value="modeloGraficoCandle"/>
+			<item value="modeloGrafico"/>
+			<item value="Candlestick"/>
+			<item value="conte"/>
+			<item value="package br.com.atalhos;"/>
+			<item value="dev"/>
+			<item value="swagger"/>
+			<item value="actua"/>
+			<item value="usuari"/>
+			<item value="cata"/>
+			<item value="error"/>
+			<item value="spring"/>
+			<item value="org.apache.maven.plugins"/>
+		</list>
+		<list key="replacehistory">
+			<item value="Candle"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="983"/>
+		<item key="DIALOG_Y_ORIGIN" value="345"/>
+		<item key="DIALOG_WIDTH" value="284"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="452"/>
+		<item key="DIALOG_Y_ORIGIN" value="247"/>
+	</section>
+</section>

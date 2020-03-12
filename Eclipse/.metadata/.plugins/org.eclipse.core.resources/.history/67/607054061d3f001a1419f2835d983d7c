@@ -1,0 +1,39 @@
+package br.com.alura.forum.dto;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import br.com.alura.forum.model.Topico;
+
+public class TopicoDto {
+
+	private long Id;
+	private String titulo;
+	private String mensagem;
+	private LocalDateTime dataCriacao;
+
+	
+	public long getId() {
+		return Id;
+	}
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+	public static List<Topico> convert(List<Topico> asList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

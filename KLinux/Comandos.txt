@@ -1,0 +1,8 @@
+VERIFICANDO TRÁFICO NA REDE
+	mitmf --arp --spoof --target [Endereço IP máquina local] --gateway [Endereço IP do roteador] -i [adaptador de rede Kali Linux]
+
+	nslookup [Endereço acesso aplicação]
+
+	WIRESHARK
+	ip.addr==[endereço IP]/24
+	Follow -> TCP Stream.

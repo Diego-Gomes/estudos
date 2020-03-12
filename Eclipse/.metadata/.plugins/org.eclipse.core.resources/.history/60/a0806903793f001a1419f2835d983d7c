@@ -1,0 +1,14 @@
+package br.com.alura.forum.dto;
+
+public class RespostasDto {
+
+	private String mensagem;
+	private String autor;
+	public String getMensagem() {
+		return mensagem;
+	}
+	public String getAutor() {
+		return autor;
+	}
+	
+}

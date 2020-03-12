@@ -1,0 +1,10 @@
+package br.com.alura.forum.dto;
+
+public class AtualizarTopicoForm {
+
+	public TopicoDto atualizar(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

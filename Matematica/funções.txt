@@ -1,0 +1,9 @@
+Funções são compostas pelos conjuntos de Dominío e de Imagem.
+
+Dominio:
+	Variaveis de entrada para a função, estas variaveis possuem semântica, como por exemplo o tamanho da embalagem.
+
+Imagem:
+	São o conjunto de valores possíveis para o resultado da função, também possuem semântica, como por exemplo o custo da embalagem.
+
+Função é como uma caixa que recebe valores de entrada(Dominio) e retorna valor de saída (Imagem).

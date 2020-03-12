@@ -1,0 +1,67 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    hostname: rabbit
+    image: rabbitmq:3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  elasticsearch:
+    image: nshou/elasticsearch-kibana
+
+  sql.data:
+    image: microsoft/mssql-server-linux:2017-latest
+
+  ecommerce.data:
+    image: redis:alpine
+
+  carrinho.api:
+    image: carrinhoapi
+    build:
+      context: .
+      dockerfile: Servicos/Carrinho/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  catalogo.api:
+    image: catalogoapi
+    build:
+      context: .
+      dockerfile: Servicos/Catalogo/Dockerfile
+
+
+  identity.api:
+    image: identityapi
+    build:
+      context: .
+      dockerfile: Servicos/Identity/Dockerfile
+    depends_on:
+      - rabbitmq
+
+  ordemdecompra.api:
+    image: ordemdecompraapi
+    build:
+      context: .
+      dockerfile: Servicos/OrdemDeCompra/Dockerfile
+    depends_on:
+      - rabbitmq
+      - sql.data
+      - elasticsearch
+
+  mvc:
+    image: mvc
+    build:
+      context: .
+      dockerfile: Web Apps/MVC/Dockerfile
+    depends_on:
+      - rabbitmq
+      - ecommerce.data
+      - elasticsearch
+
+  webstatus:
+    image: webstatus
+    build:
+      context: .
+      dockerfile: Web Apps/WebStatus/Dockerfile

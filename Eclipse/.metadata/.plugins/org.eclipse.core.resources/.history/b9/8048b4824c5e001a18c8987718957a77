@@ -1,0 +1,35 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+public class Main {
+	
+	public static void main(String[] args) throws SQLException{
+		
+		try(Connection connection = new ConnectionFactory().getConnection()){
+			ProductDAO productDAO = new ProductDAO(connection);
+			
+			String name = "TV";
+			String description = "TV LG 49 POLEGADAS";
+			Product p = productDAO.insert(name, description);
+			
+			System.out.println(String.format("Product inserted: %s %s %s", p.getId(), p.getName(), p.getDescription()));
+			System.out.println("");
+			
+			List<Product> products = productDAO.list();
+			
+			products.forEach(product -> System.out.println(String.format("%s %s %s", 
+																		product.getId(), 
+																		product.getName(), 
+																		product.getDescription())));
+			
+			System.out.println("");
+			
+			productDAO.delete(2);
+			
+		}
+	}
+	
+	
+
+}

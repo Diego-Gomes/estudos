@@ -1,0 +1,41 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+public class ConnectionFactory {
+	
+	private DataSource dataSource;
+	
+	private String url = "jdbc:mysql://192.168.100.174:3306/loja_virtual";
+	private String user = "loja_virtual";
+	private String password = "loja_virtual";
+	private int maxPoolSize = 20;
+	
+	public ConnectionFactory(Properties prop) {
+
+		ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+
+		/*
+		 * String password = prop.getProperty("password"); String maxPoolSize =
+		 * prop.getProperty("maxPoolSize");
+		 */
+		
+		String url = prop.getProperty("url"); String user = prop.getProperty("user");
+		comboPooledDataSource.setJdbcUrl(url);
+		comboPooledDataSource.setUser(user);
+		comboPooledDataSource.setPassword(password);
+		comboPooledDataSource.setMaxPoolSize(maxPoolSize);
+		
+		this.dataSource = comboPooledDataSource;
+		
+	}
+	
+	public Connection getConnection() throws SQLException {
+		return this.dataSource.getConnection();
+	}
+	
+}

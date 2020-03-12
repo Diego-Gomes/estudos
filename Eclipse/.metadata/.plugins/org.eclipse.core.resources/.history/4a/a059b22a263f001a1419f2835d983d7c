@@ -1,0 +1,11 @@
+package br.com.alura.forum.data.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sun.xml.bind.v2.model.core.ID;
+
+import br.com.alura.forum.model.Topico;
+
+public interface ITopicoRepository extends JpaRepository<Topico, id>{
+
+}

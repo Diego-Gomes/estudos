@@ -1,0 +1,13 @@
+package br.com.alura.forum.dto;
+
+public class LoginForm {
+
+	public String getUsuario() {
+		return usuario;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	private String usuario;
+	private String senha;
+}
